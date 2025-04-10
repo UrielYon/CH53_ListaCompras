@@ -7,6 +7,7 @@ const cuerpoTabla = document.getElementById("tablaListaCompras").getElementsByTa
 const contadorProductos = document.getElementById("contadorProductos");
 const productosTotal = document.getElementById("productosTotal");
 const precioTotal = document.getElementById("precioTotal");
+const btnClear = document.getElementById("btnClear");
 //Numeración de la primera columna de la tabla
 let cont = 0;
 let costoTotal = 0;
@@ -139,3 +140,45 @@ window.addEventListener("load", function(event){
     productosTotal.innerText = totalEnProductos;
     contadorProductos.innerText = cont;
 })
+
+//Agregar la funcionalidad del boton Limpiar Todo
+//Resumen
+//Tabla
+//campos
+//alerta
+//localStorage
+
+btnClear.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // Vaciar tabla
+    cuerpoTabla.innerHTML = "";
+
+    // Reiniciar contadores
+    cont = 0;
+    costoTotal = 0;
+    totalEnProductos = 0;
+
+    // Actualizar resumen en pantalla
+    contadorProductos.innerText = cont;
+    productosTotal.innerText = totalEnProductos;
+    precioTotal.innerText = "$0.00";
+
+    // Limpiar los campos
+    txtName.value = "";
+    txtNumber.value = "";
+    txtName.style.border = "";
+    txtNumber.style.border = "";
+
+    // Ocultar alerta
+    alertValidaciones.style.display = "none";
+    alertValidacionesTexto.innerHTML = "";
+
+    // Limpiar datos y almacenamiento
+    datos = [];
+    localStorage.removeItem("datos");
+    localStorage.removeItem("resumen");
+
+    // Dar foco al campo de nombre
+    txtName.focus();
+});
